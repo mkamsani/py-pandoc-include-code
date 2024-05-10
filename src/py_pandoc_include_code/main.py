@@ -20,19 +20,19 @@ def action(elem, _):
 
     if snippet is not None:
         # if snippet is not none include only the lines between
-        # f"// start snippet {snippet}"
+        # f"# start snippet {snippet}"
         # and
-        # f"// end snippet {snippet}"
+        # f"# end snippet {snippet}"
         code_lines = ""
         read = False
         for line in lines:
             line_stripped = line.strip()
 
-            if read is False and line_stripped == f"// start snippet {snippet}":
+            if read is False and line_stripped == f"# /* {snippet}":
                 read = True
                 continue
 
-            if read is True and line_stripped == f"// end snippet {snippet}":
+            if read is True and line_stripped == f"# */":
                 break
 
             if read:
